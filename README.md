@@ -15,7 +15,7 @@ Side bar --> Authentication --> URL Configuration
 1. search for Oauth Consent screen
 2. select clients on side bar (left hand side)
 3. click on desired client ID, acquire client secret and client ID (right hand side)
-4. authorised redirect URLs ```(https://<YOUR_SUPABASE_PROJECT_ID>.supabase.co/auth/v1/callback)```
+4. authorised redirect URLs ```https://<YOUR_SUPABASE_PROJECT_ID>.supabase.co/auth/v1/callback```
 
 #### supabase oauth
 1. Side bar --> Authentication --> sign in/up
