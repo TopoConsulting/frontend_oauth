@@ -9,10 +9,9 @@ type AuthContextType = {
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
   signOut: () => Promise<void>;
-  getAccessToken: () => Promise<string | null>;
 };
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -68,11 +67,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
   };
 
-  // Get access token
-  const getAccessToken = async () => {
-    return session?.access_token ?? null;
-  };
-
   return (
     <AuthContext.Provider
       value={{
@@ -82,7 +76,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signInWithGoogle,
         signInWithFacebook,
         signOut,
-        getAccessToken,
       }}
     >
       {children}
@@ -96,6 +89,5 @@ export function useAuth() {
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
-  console.log('Auth context:', context);
   return context;
 }
